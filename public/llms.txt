@@ -1,0 +1,14 @@
+# Lirisoft AI Indexing Guidance
+
+## About
+Lirisoft is a technology consulting firm specializing in IT consulting and software development.
+
+## Core Services
+- IT Consulting & Software Development
+- IoT & Automation Solutions
+- Cloud Migration
+- Cybersecurity
+
+## Contact
+- Website: https://lirisoft.com
+- Email: contact@lirisoft.com

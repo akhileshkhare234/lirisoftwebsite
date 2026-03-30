@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  /* Theme Colors */
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-light);
+  --color-brand-dark: var(--brand-dark);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --surface: #f8fafc;
+    --muted: #64748b;
+    --brand: #2563eb;
+    --brand-light: #60a5fa;
+    --brand-dark: #1d4ed8;
+    --secondary: #64748b;
+  }
+
+  .dark {
+    --background: #020617;
+    --foreground: #f8fafc;
+    --surface: #0f172a;
+    --muted: #94a3b8;
+    --brand: #3b82f6;
+    --brand-light: #93c5fd;
+    --brand-dark: #2563eb;
+    --secondary: #94a3b8;
+  }
+
+  /* Midnight Theme */
+  .theme-midnight {
+    --brand: #6366f1;
+    --brand-light: #818cf8;
+    --brand-dark: #4f46e5;
+  }
+  .theme-midnight.dark {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --surface: #1e293b;
+    --brand: #818cf8;
+    --brand-light: #a5b4fc;
+    --brand-dark: #6366f1;
+  }
+
+  /* Forest Theme */
+  .theme-forest {
+    --brand: #10b981;
+    --brand-light: #34d399;
+    --brand-dark: #059669;
+  }
+  .theme-forest.dark {
+    --background: #064e3b;
+    --foreground: #ecfdf5;
+    --surface: #065f46;
+    --brand: #34d399;
+    --brand-light: #6ee7b7;
+    --brand-dark: #10b981;
+  }
+
+  /* Royal Theme */
+  .theme-royal {
+    --brand: #8b5cf6;
+    --brand-light: #a78bfa;
+    --brand-dark: #7c3aed;
+  }
+  .theme-royal.dark {
+    --background: #2e1065;
+    --foreground: #f5f3ff;
+    --surface: #4c1d95;
+    --brand: #a78bfa;
+    --brand-light: #c4b5fd;
+    --brand-dark: #8b5cf6;
+  }
+
+  /* Lirisoft Theme */
+  .theme-lirisoft {
+    --brand: #e5a83b;
+    --brand-light: #f0b429;
+    --brand-dark: #00334e;
+  }
+  .theme-lirisoft.dark {
+    --background: #001a26;
+    --foreground: #f8fafc;
+    --surface: #002b3d;
+    --brand: #f0b429;
+    --brand-light: #fcd34d;
+    --brand-dark: #e5a83b;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
