@@ -4,6 +4,7 @@ import { CORE_SERVICES } from '../constants';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Code, Database, Globe, ShieldCheck, Server, Cpu, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { OptimizedImage } from '../components/OptimizedImage';
 
 const ServicesListPage: React.FC = () => {
   const serviceIcons: Record<string, React.ReactNode> = {
@@ -14,11 +15,46 @@ const ServicesListPage: React.FC = () => {
     'data-analytics': <Cpu size={32} />
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://lirisoft.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://lirisoft.com/services',
+      },
+    ],
+  };
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: CORE_SERVICES.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        url: `https://lirisoft.com/services/${service.slug}`,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead 
         title="Our Services - Specialized Technology Solutions | Lirisoft"
         description="Explore Lirisoft's range of enterprise technology services, including custom software development, tax technology, cloud infrastructure, and AI solutions."
+        canonical="https://lirisoft.com/services"
+        structuredData={[breadcrumbSchema, itemListSchema]}
       />
 
       {/* Hero Section */}
@@ -106,6 +142,41 @@ const ServicesListPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Delivery Model Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#001a26] font-display mb-6">How We Deliver Outcomes</h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-10">
+              Every engagement follows a delivery framework built for enterprise predictability: discovery, architecture,
+              implementation, and measurable optimization. This helps teams launch faster while keeping compliance,
+              reliability, and long-term maintainability in focus.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: '1. Discovery & Roadmap',
+                  desc: 'We align business goals, technical constraints, and KPIs before implementation begins.',
+                },
+                {
+                  title: '2. Build & Integrate',
+                  desc: 'Our teams ship in short cycles with security reviews, QA automation, and stakeholder demos.',
+                },
+                {
+                  title: '3. Operate & Improve',
+                  desc: 'After launch, we monitor performance and iterate to increase efficiency and business value.',
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-2xl border border-slate-200 p-6 bg-slate-50">
+                  <h3 className="text-lg font-bold text-[#001a26] mb-3">{item.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
@@ -117,9 +188,11 @@ const ServicesListPage: React.FC = () => {
               className="relative"
             >
               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-square lg:aspect-auto lg:h-[600px]">
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Why Choose Us" 
+                <OptimizedImage
+                  src="/serviceback2.png"
+                  alt="Why Choose Us"
+                  width={1200}
+                  height={1200}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />

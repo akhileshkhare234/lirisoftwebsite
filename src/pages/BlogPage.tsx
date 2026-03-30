@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Calendar, ArrowRight, Search, ChevronRight } from 'lucide-react';
 import { Link, useLocation, useNavigationType } from 'react-router-dom';
 import { blogs } from '../data/blogs';
+import { OptimizedImage } from '../components/OptimizedImage';
 
 const BlogPage: React.FC = () => {
   const location = useLocation();
@@ -40,12 +41,49 @@ const BlogPage: React.FC = () => {
 
   const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://lirisoft.com/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://lirisoft.com/blog'
+      }
+    ]
+  };
+
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Lirisoft Blog',
+    url: 'https://lirisoft.com/blog',
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `https://lirisoft.com/blog/${post.id}`,
+      datePublished: post.date,
+      author: {
+        '@type': 'Organization',
+        name: post.author,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead 
         title="Blog & Insights - Technology, Engineering & Strategy | Lirisoft"
         description="Stay updated with the latest trends in custom software development, IoT & automation, and enterprise digital transformation from Lirisoft experts."
         canonical="https://lirisoft.com/blog"
+        structuredData={[breadcrumbSchema, blogSchema]}
       />
 
       {/* Hero Section */}
@@ -100,11 +138,14 @@ const BlogPage: React.FC = () => {
           >
             <div className="grid lg:grid-cols-2 gap-12 items-center bg-surface rounded-[3rem] overflow-hidden border border-muted/20 hover:border-brand transition-all shadow-xl">
               <div className="aspect-[16/10] lg:aspect-square overflow-hidden">
-                <img 
-                  src={posts[0].image} 
-                  alt={posts[0].title} 
+                <OptimizedImage
+                  src={posts[0].image}
+                  alt={posts[0].title}
+                  width={1200}
+                  height={750}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
+                  priority
                 />
               </div>
               <div className="p-12 lg:p-20">
@@ -151,9 +192,11 @@ const BlogPage: React.FC = () => {
                   className="group grid md:grid-cols-5 gap-10 items-start"
                 >
                   <div className="md:col-span-2 aspect-[16/10] bg-background rounded-[2rem] overflow-hidden border border-muted/20 group-hover:border-brand transition-all shadow-sm group-hover:shadow-xl">
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
+                    <OptimizedImage
+                      src={post.image}
+                      alt={post.title}
+                      width={900}
+                      height={560}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />

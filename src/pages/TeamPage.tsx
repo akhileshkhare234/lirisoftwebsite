@@ -10,25 +10,25 @@ const TeamPage: React.FC = () => {
       name: 'David Chen',
       role: 'Chief Executive Officer',
       bio: 'Former tech lead at major Silicon Valley firms with 15+ years of experience in enterprise architecture.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400'
+      image: '/Company1.jpeg'
     },
     {
       name: 'Sarah Williams',
       role: 'Chief Technology Officer',
       bio: 'Expert in cloud-native systems and distributed computing. Leading our engineering excellence.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400'
+      image: '/Company2.jpeg'
     },
     {
       name: 'Michael Rodriguez',
       role: 'Head of IoT & Automation',
       bio: 'Specialist in Messaging, VoIP, and complex automation systems for global enterprise clients.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'
+      image: '/Company3.jpeg'
     },
     {
       name: 'Elena Petrova',
       role: 'VP of Engineering',
       bio: 'Driving our software development lifecycle and ensuring the highest standards of code quality.',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400'
+      image: '/Company4.jpeg'
     }
   ];
 

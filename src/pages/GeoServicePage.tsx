@@ -26,12 +26,44 @@ const GeoServicePage: React.FC = () => {
     }
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://lirisoft.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://lirisoft.com/services',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: service.title,
+        item: `https://lirisoft.com/services/${service.slug}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: `${service.title} in ${location.city}`,
+        item: `https://lirisoft.com/services/${service.slug}/${location.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
         title={`${service.title} in ${location.city}, ${location.state}`}
         description={`Looking for ${service.title} in ${location.city}? Lirisoft offers top-tier ${service.id} solutions tailored for businesses in ${location.city}, ${location.state}.`}
-        structuredData={localBusinessSchema}
+        canonical={`https://lirisoft.com/services/${service.slug}/${location.slug}`}
+        structuredData={[localBusinessSchema, breadcrumbSchema]}
       />
 
       <section className="py-24 bg-background text-foreground">

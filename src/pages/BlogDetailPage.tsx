@@ -27,6 +27,53 @@ const BlogDetailPage: React.FC = () => {
     );
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: blog.title,
+    description: blog.excerpt,
+    image: [blog.image],
+    datePublished: blog.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Lirisoft Team'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Lirisoft',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://lirisoft.com/logo.png'
+      }
+    },
+    mainEntityOfPage: `https://lirisoft.com/blog/${blog.id}`
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://lirisoft.com/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://lirisoft.com/blog'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: blog.title,
+        item: `https://lirisoft.com/blog/${blog.id}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -35,6 +82,7 @@ const BlogDetailPage: React.FC = () => {
         canonical={`https://lirisoft.com/blog/${blog.id}`}
         ogType="article"
         ogImage={blog.image}
+        structuredData={[articleSchema, breadcrumbSchema]}
       />
 
       <section className="relative h-[52vh] min-h-[360px] overflow-hidden">

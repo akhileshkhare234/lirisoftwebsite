@@ -17,7 +17,7 @@ const servicesData = [
     mainIcon: <BrainCircuit size={32} />,
     details: "Invent, build, integrate, scale and upgrade your applications with Lirisoft! We have been harnessing digital technologies for the benefit of Fortune 500 businesses, mid and large enterprises, and startups across the variety of industries. We help you to build high-quality software solutions and products as well as deliver a wide range of related professional services.",
     additionalDetails: "Generative AI Services help businesses automate tasks and generate insights using AI.",
-    imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "/gen-ai.png"
   },
   {
     name: "Automation",
@@ -25,7 +25,7 @@ const servicesData = [
     mainIcon: <TrendingUp size={32} />,
     details: "Our Automation services streamline your business processes, reduce manual effort, and increase efficiency. We implement intelligent automation solutions using the latest technologies to optimize workflows and drive productivity.",
     additionalDetails: "We offer RPA, workflow automation, and integration services tailored to your unique business needs.",
-    imageSrc: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "/trending-up-down.png"
   },
   {
     name: "Solution Development And Evolution",
@@ -33,7 +33,7 @@ const servicesData = [
     mainIcon: <Atom size={32} />,
     details: "We provide end-to-end solution development services, from initial concept to deployment and beyond. Our team ensures your solutions evolve with your business needs.",
     additionalDetails: "Our expertise includes cloud integration, microservices architecture, and continuous delivery pipelines.",
-    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "/serviceback2.png"
   },
   {
     name: "End-To-End Solution Development",
@@ -41,7 +41,7 @@ const servicesData = [
     mainIcon: <Cable size={32} />,
     details: "Our End-To-End Solution Development services cover every stage of the software lifecycle. From ideation to deployment, we ensure your product meets the highest standards.",
     additionalDetails: "We focus on scalability, performance, and user experience to deliver solutions that grow with your business.",
-    imageSrc: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "/custom-software-development.png"
   },
   {
     name: "Data Science Research",
@@ -49,43 +49,43 @@ const servicesData = [
     mainIcon: <Database size={32} />,
     details: "Our Data Science Research services explore innovative ways to leverage data for your business. We conduct in-depth research to uncover new opportunities and optimize existing processes.",
     additionalDetails: "Our team specializes in natural language processing, computer vision, and advanced statistical modeling.",
-    imageSrc: "https://images.unsplash.com/photo-1551288049-bbbda5366392?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "/Database.png"
   }
 ];
 
 const sliderData = [
   {
-    src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=2070",
+    src: "/serviceback2.png",
     alt: "Requirements Gathering",
     highlight: "1. Requirements Gathering & Planning",
     title: "Translate the validated idea into functional and technical requirements. Define product vision, goals, key features, and success metrics. Create a product roadmap and resource plan."
   },
   {
-    src: "/backimage3.jpeg",
+    src: "/backimage1.jpeg",
     alt: "UI/UX Design",
     highlight: "2. UI/UX Design",
     title: "Design user-centric interfaces and experiences. Start with wireframes and move to interactive prototypes, ensuring usability, accessibility, and intuitive interaction."
   },
   {
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2070",
+    src: "/custom-software-development.png",
     alt: "Development",
     highlight: "3. Development",
     title: "Develop the application using best practices and modern technologies. Implement features, integrate systems, and ensure the solution meets all requirements."
   },
   {
-    src: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=2070",
+    src: "/check-check.png",
     alt: "Testing & QA",
     highlight: "4. Testing & QA",
     title: "Conduct rigorous testing—unit, integration, functional, and user acceptance—to ensure performance, security, and reliability across platforms."
   },
   {
-    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2070",
+    src: "/monitor-cog.png",
     alt: "Launch & Deployment",
     highlight: "5. Launch & Deployment",
     title: "Deploy the product to production. Prepare support infrastructure, documentation, and monitor systems for early issues post-launch."
   },
   {
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070",
+    src: "/gauge.png",
     alt: "Post-Launch Support",
     highlight: "6. Post-Launch Support & Iteration",
     title: "Gather user feedback, fix bugs, and plan enhancements. Continuously improve based on analytics, user behavior, and business goals."
@@ -110,8 +110,10 @@ const AboutPage: React.FC = () => {
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" 
+            src="/serviceback2.png" 
             alt="Team Collaboration" 
+            width={2070}
+            height={1380}
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -223,6 +225,8 @@ const AboutPage: React.FC = () => {
                 <img
                   src={partner.src}
                   alt={`${partner.name} logo`}
+                  width={220}
+                  height={80}
                   className="max-h-14 md:max-h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all"
                   loading="lazy"
                 />
@@ -294,6 +298,8 @@ const AboutPage: React.FC = () => {
               <img 
                 src="/custom-software-development.png" 
                 alt="Software Development Team" 
+                width={1200}
+                height={900}
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -336,6 +342,8 @@ const AboutPage: React.FC = () => {
                     <img 
                       src={sliderData[currentSlide].src} 
                       alt={sliderData[currentSlide].alt} 
+                      width={2070}
+                      height={1164}
                       className="rounded-2xl shadow-lg w-full aspect-video object-cover"
                       referrerPolicy="no-referrer"
                     />
@@ -420,6 +428,8 @@ const AboutPage: React.FC = () => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    width={28}
+                    height={28}
                     className="w-7 h-7 object-contain"
                     loading="lazy"
                   />

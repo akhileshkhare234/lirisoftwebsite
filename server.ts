@@ -9,6 +9,26 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+type WebVitalMetric = {
+  name: string;
+  value: number;
+  rating?: 'good' | 'needs-improvement' | 'poor';
+  id?: string;
+  path?: string;
+  timestamp: string;
+};
+
+const webVitalsStore: WebVitalMetric[] = [];
+const MAX_WEB_VITALS = 1500;
+
+function csvEscape(value: string | number | undefined): string {
+  const raw = String(value ?? '');
+  if (raw.includes(',') || raw.includes('"') || raw.includes('\n')) {
+    return `"${raw.replace(/"/g, '""')}"`;
+  }
+  return raw;
+}
+
 async function startServer() {
   const app = express();
   const PORT = 3000;
@@ -18,6 +38,60 @@ async function startServer() {
   // API Routes
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  app.post('/api/web-vitals', (req, res) => {
+    const { name, value, rating, id, path: pagePath } = req.body ?? {};
+
+    if (!name || typeof value !== 'number') {
+      return res.status(400).json({ success: false, message: 'Invalid metric payload' });
+    }
+
+    const metric: WebVitalMetric = {
+      name,
+      value,
+      rating,
+      id,
+      path: pagePath,
+      timestamp: new Date().toISOString(),
+    };
+
+    webVitalsStore.push(metric);
+    if (webVitalsStore.length > MAX_WEB_VITALS) {
+      webVitalsStore.splice(0, webVitalsStore.length - MAX_WEB_VITALS);
+    }
+
+    console.log('[web-vitals]', metric);
+
+    res.status(202).json({ success: true });
+  });
+
+  app.get('/api/web-vitals', (req, res) => {
+    const limitParam = Number(req.query.limit ?? 100);
+    const limit = Number.isFinite(limitParam) ? Math.max(1, Math.min(1000, limitParam)) : 100;
+    const data = webVitalsStore.slice(-limit).reverse();
+
+    res.json({
+      count: data.length,
+      totalStored: webVitalsStore.length,
+      items: data,
+    });
+  });
+
+  app.get('/api/web-vitals.csv', (req, res) => {
+    const headers = ['timestamp', 'name', 'value', 'rating', 'id', 'path'];
+    const rows = webVitalsStore.map((item) => [
+      csvEscape(item.timestamp),
+      csvEscape(item.name),
+      csvEscape(item.value),
+      csvEscape(item.rating),
+      csvEscape(item.id),
+      csvEscape(item.path),
+    ].join(','));
+
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', 'inline; filename="web-vitals.csv"');
+    res.send([headers.join(','), ...rows].join('\n'));
   });
 
   // Lead Generation Endpoint

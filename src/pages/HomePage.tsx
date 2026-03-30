@@ -12,19 +12,19 @@ const testimonials = [
     quote: "We had an outstanding experience collaborating with Lirisoft. Their development team demonstrated exceptional expertise, reliability, and a commitment to meeting deadlines. They delivered high-quality solutions tailored to our needs, ensuring a seamless partnership. We wholeheartedly recommend Lirisoft for their professionalism and technical excellence.",
     author: "Mahendra",
     role: "CEO Canyon Tech",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100"
+    avatar: "/Company1.jpeg"
   },
   {
     quote: "Lirisoft's team transformed our vision into a robust digital product. Their attention to detail and proactive communication made the entire development process smooth and efficient. They are truly a partner you can trust for complex software projects.",
     author: "Sarah Jenkins",
     role: "Product Manager, InnovateX",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100"
+    avatar: "/Company2.jpeg"
   },
   {
     quote: "The level of technical proficiency at Lirisoft is unmatched. They helped us scale our infrastructure and optimize our workflows, resulting in a 40% increase in operational efficiency. Highly recommended for any enterprise-level IT consulting.",
     author: "David Chen",
     role: "CTO, Global Systems",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100"
+    avatar: "/Company3.jpeg"
   }
 ];
 
@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
   ];
 
   const itEcosystemSectionData = {
-    imageSrc: '/backimage3.jpeg',
+    imageSrc: '/serviceback2.png',
     imageAlt: 'Comprehensive IT ecosystem management and digital infrastructure',
     title: 'Comprehensive Care for',
     subtitle: 'Your IT Ecosystem',
@@ -221,6 +221,8 @@ const HomePage: React.FC = () => {
                   <img
                     src="/backimage1.jpeg"
                     alt="Professional working on laptop for digital innovation"
+                    width={361}
+                    height={668}
                     className="object-cover w-full h-full rounded-[180.5px]"
                     loading="eager"
                   />
@@ -428,6 +430,8 @@ const HomePage: React.FC = () => {
             <img
               src={itEcosystemSectionData.imageSrc}
               alt={itEcosystemSectionData.imageAlt}
+              width={1200}
+              height={687}
               className="object-cover w-full h-full rounded-tr-xl rounded-br-xl"
               referrerPolicy="no-referrer"
               loading="lazy"
@@ -504,6 +508,8 @@ const HomePage: React.FC = () => {
                       <img 
                         src={testimonials[currentTestimonial].avatar} 
                         alt={testimonials[currentTestimonial].author} 
+                        width={100}
+                        height={100}
                         className="w-18 h-18 rounded-full object-cover border-4 border-white shadow-lg relative z-10"
                         referrerPolicy="no-referrer"
                       />
@@ -576,19 +582,21 @@ const HomePage: React.FC = () => {
              
 
               <div aria-hidden="true" className="absolute z-0 right-[8%] top-[22%] w-[72px] h-[250px] rounded-[1000px] bg-[#F0B73F] sm:w-[90px] sm:h-[340px] sm:right-[10%] sm:top-[20%] lg:w-[104px] lg:h-[502px] lg:right-[16%] lg:top-[190px]">
-                <img src="/Icons.svg" alt="" className="w-14 h-14 absolute left-1/2 top-4 -translate-x-1/2 lg:w-[72px] lg:h-[72px]" />
+                <img src="/Icons.svg" alt="" width={72} height={72} className="w-14 h-14 absolute left-1/2 top-4 -translate-x-1/2 lg:w-[72px] lg:h-[72px]" />
               </div>
  <img
                 src="/backimage5.png"
                 alt="Lirisoft support specialist helping a customer"
+                width={910}
+                height={700}
                 className="absolute z-[5] w-[520px] max-w-none left-[-86px] top-[-26px] sm:w-[650px] sm:left-[-132px] sm:top-[-42px] lg:w-[910px] lg:left-[-90px] lg:top-[24px]"
                 loading="lazy"
               />
               <div aria-hidden="true" className="absolute right-[28%] bottom-[4%] w-[72px] h-[190px] rounded-[1000px] bg-[#043A53] z-30 sm:w-[88px] sm:h-[270px] sm:right-[26%] sm:bottom-[2%] lg:w-[104px] lg:h-[413px] lg:right-[32%] lg:top-[331px] lg:bottom-auto">
-                <img src="/Icons1.svg" alt="" className="w-14 h-14 absolute left-1/2 top-4 -translate-x-1/2 lg:w-[72px] lg:h-[72px]" />
+                <img src="/Icons1.svg" alt="" width={72} height={72} className="w-14 h-14 absolute left-1/2 top-4 -translate-x-1/2 lg:w-[72px] lg:h-[72px]" />
               </div>
 
-              <img src="/Icons2.svg" alt="" aria-hidden="true" className="absolute z-0 left-[4%] bottom-[7%] w-12 h-12 sm:w-14 sm:h-14 sm:left-[6%] sm:bottom-[6%] lg:w-[72px] lg:h-[72px] lg:left-[18px] lg:bottom-[20px]" />
+              <img src="/Icons2.svg" alt="" aria-hidden="true" width={72} height={72} className="absolute z-0 left-[4%] bottom-[7%] w-12 h-12 sm:w-14 sm:h-14 sm:left-[6%] sm:bottom-[6%] lg:w-[72px] lg:h-[72px] lg:left-[18px] lg:bottom-[20px]" />
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { SEOHead } from '../components/SEOHead';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, HelpCircle, MessageCircle, ArrowRight, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { OptimizedImage } from '../components/OptimizedImage';
 
 const faqs = [
   {
@@ -74,11 +75,47 @@ const FAQPage: React.FC = () => {
     )
   })).filter(category => category.questions.length > 0);
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.flatMap((category) =>
+      category.questions.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a,
+        },
+      }))
+    ),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://lirisoft.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'FAQ',
+        item: 'https://lirisoft.com/faq',
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <SEOHead 
         title="FAQ - Frequently Asked Questions | Lirisoft"
         description="Find answers to common questions about Lirisoft's IT consulting services, software development process, and how we can help your business grow."
+        canonical="https://lirisoft.com/faq"
+        structuredData={[faqSchema, breadcrumbSchema]}
       />
 
       {/* Hero Section */}
@@ -220,9 +257,11 @@ const FAQPage: React.FC = () => {
               <div className="hidden lg:block">
                 <div className="relative">
                   <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full" />
-                  <img 
-                    src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=800" 
-                    alt="Support Team" 
+                  <OptimizedImage
+                    src="/Company4.jpeg"
+                    alt="Support Team"
+                    width={800}
+                    height={1000}
                     className="relative z-10 rounded-3xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />

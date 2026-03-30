@@ -47,12 +47,99 @@ const ServicePage: React.FC = () => {
     }))
   };
 
+  const serviceImageBySlug: Record<string, string> = {
+    'custom-software-development': '/custom-software-development.png',
+    'iot-automation-solutions': '/smb-messaging.png',
+    'cloud-migration': '/serviceback2.png',
+    'cybersecurity': '/cyber-security.png',
+    'data-analytics': '/Database.png',
+  };
+
+  const trustProofBySlug: Record<string, {
+    updatedOn: string;
+    reviewedBy: string;
+    clientProfile: string;
+    outcomes: string[];
+    standards: string[];
+  }> = {
+    'custom-software-development': {
+      updatedOn: 'March 2026',
+      reviewedBy: 'Principal Solution Architect',
+      clientProfile: 'Growth-stage and enterprise product teams',
+      outcomes: ['30-45% faster feature delivery cycles', 'Reduced technical debt via modular architecture', 'Improved release confidence with automated QA gates'],
+      standards: ['SOC 2-ready delivery process', 'Secure SDLC checkpoints', 'Architecture review sign-off'],
+    },
+    'iot-automation-solutions': {
+      updatedOn: 'March 2026',
+      reviewedBy: 'Head of IoT and Automation',
+      clientProfile: 'Operations-heavy logistics and field teams',
+      outcomes: ['Up to 35% process automation lift', 'Lower manual workflow overhead', 'Faster incident response through real-time monitoring'],
+      standards: ['Device lifecycle governance', 'Role-based access policies', 'Operational telemetry baselines'],
+    },
+    'cloud-migration': {
+      updatedOn: 'March 2026',
+      reviewedBy: 'Cloud Practice Lead',
+      clientProfile: 'Mid-market and regulated enterprise environments',
+      outcomes: ['Reduced infrastructure spend through right-sizing', 'Lower migration risk with phased cutovers', 'Improved uptime through resilient architecture'],
+      standards: ['Migration runbook controls', 'Disaster recovery validation', 'Post-cutover performance audit'],
+    },
+    'cybersecurity': {
+      updatedOn: 'March 2026',
+      reviewedBy: 'Security Engineering Lead',
+      clientProfile: 'Security-sensitive SaaS and enterprise organizations',
+      outcomes: ['Reduced critical vulnerability exposure windows', 'Improved detection-to-response timing', 'Higher audit readiness across environments'],
+      standards: ['Threat-model-driven architecture', 'Continuous control monitoring', 'Incident playbook readiness checks'],
+    },
+    'data-analytics': {
+      updatedOn: 'March 2026',
+      reviewedBy: 'Data Platform Architect',
+      clientProfile: 'Data-mature product and operations teams',
+      outcomes: ['Faster reporting cycles with trusted metrics', 'Improved forecasting confidence', 'Reduced decision latency across teams'],
+      standards: ['Data quality scorecards', 'Source-to-dashboard lineage checks', 'Governed semantic model definitions'],
+    },
+  };
+
+  const serviceImage = serviceImageBySlug[service.slug] || '/backimage3.jpeg';
+  const proof = trustProofBySlug[service.slug] || {
+    updatedOn: 'March 2026',
+    reviewedBy: 'Senior Delivery Lead',
+    clientProfile: 'Cross-industry technology teams',
+    outcomes: ['Improved delivery predictability', 'Higher platform reliability', 'Clearer KPI ownership'],
+    standards: ['Security-first implementation', 'QA validation checkpoints', 'Continuous optimization cadence'],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lirisoft.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://lirisoft.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": service.title,
+        "item": `https://lirisoft.com/services/${service.slug}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
         title={`${service.title} | Lirisoft`}
         description={service.description}
-        structuredData={[serviceSchema, faqSchema]}
+        canonical={`https://lirisoft.com/services/${service.slug}`}
+        structuredData={[serviceSchema, faqSchema, breadcrumbSchema]}
       />
 
       {/* Hero Section */}
@@ -78,8 +165,47 @@ const ServicePage: React.FC = () => {
               <p className="text-xl md:text-2xl text-muted leading-relaxed max-w-3xl">
                 {service.description}
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <span className="inline-flex items-center rounded-full border border-slate-300 px-4 py-2 text-xs font-bold tracking-wider uppercase text-slate-700 bg-white">
+                  Updated {proof.updatedOn}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-slate-300 px-4 py-2 text-xs font-bold tracking-wider uppercase text-slate-700 bg-white">
+                  Reviewed By {proof.reviewedBy}
+                </span>
+              </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Proof Snapshot */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto rounded-[2rem] border border-slate-200 bg-slate-50 p-8 md:p-10">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-brand mb-4">Trust Snapshot</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground font-display mb-4">Outcomes and Controls Built Into Delivery</h2>
+            <p className="text-slate-600 leading-relaxed mb-8">
+              This service is optimized for {proof.clientProfile}. Every implementation includes measurable outcomes and structured quality controls.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="rounded-2xl bg-white border border-slate-200 p-6">
+                <h3 className="text-lg font-bold text-foreground mb-4">Expected Outcomes</h3>
+                <ul className="space-y-2 text-sm text-slate-700 leading-relaxed">
+                  {proof.outcomes.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-2xl bg-white border border-slate-200 p-6">
+                <h3 className="text-lg font-bold text-foreground mb-4">Quality and Risk Controls</h3>
+                <ul className="space-y-2 text-sm text-slate-700 leading-relaxed">
+                  {proof.standards.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -100,6 +226,30 @@ const ServicePage: React.FC = () => {
               </p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Delivery Blueprint */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto rounded-[2rem] border border-slate-200 p-8 md:p-12 bg-slate-50">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-display">Delivery Blueprint for {service.title}</h2>
+            <p className="text-muted leading-relaxed mb-8">
+              Our teams use an iterative delivery model tailored to your platform maturity. Each sprint aligns implementation
+              with measurable business outcomes so stakeholder teams can track value in real time.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                'Architecture and risk assessment before build starts',
+                'Incremental releases with QA automation and security checks',
+                'Post-launch optimization using telemetry and user feedback',
+              ].map((point) => (
+                <div key={point} className="rounded-xl bg-white border border-slate-200 p-5 text-sm text-slate-700 leading-relaxed">
+                  {point}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -147,7 +297,7 @@ const ServicePage: React.FC = () => {
             >
               <div className="relative z-10 bg-surface rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5]">
                 <img 
-                  src={`https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800`} 
+                  src={serviceImage} 
                   alt={service.title} 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"

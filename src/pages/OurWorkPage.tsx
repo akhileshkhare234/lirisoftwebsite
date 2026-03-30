@@ -83,8 +83,10 @@ const OurWorkPage: React.FC = () => {
           >
             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border-[12px] border-white/10">
               <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" 
+                src="/serviceback2.png" 
                 alt="Featured Product" 
+                width={1200}
+                height={675}
                 className="w-full h-auto"
                 referrerPolicy="no-referrer"
               />
@@ -119,6 +121,8 @@ const OurWorkPage: React.FC = () => {
                   <img 
                     src={project.image} 
                     alt={project.title} 
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
@@ -176,6 +180,8 @@ const OurWorkPage: React.FC = () => {
                 <img 
                   src="/key-fetures.png" 
                   alt="Key Features" 
+                  width={1200}
+                  height={900}
                   className="w-full h-auto"
                   referrerPolicy="no-referrer"
                 />
@@ -223,6 +229,8 @@ const OurWorkPage: React.FC = () => {
                 <img 
                   src="/why-choose-us.png" 
                   alt="Why Choose Us" 
+                  width={1200}
+                  height={900}
                   className="w-full h-auto"
                   referrerPolicy="no-referrer"
                 />
