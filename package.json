@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "prebuild": "npm install",
-    "build": "vite build",
+    "build": "vite build --outDir dist && node -e \"const fs=require('node:fs'); if(!fs.existsSync('dist')){throw new Error('dist missing after build')} console.log('dist verified')\"",
     "start": "node server.ts",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
